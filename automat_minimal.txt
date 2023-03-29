@@ -1,5 +1,4 @@
-0i a 1-2 b 3-4 lambda 0 
-1-2 a 3-4 b 1-2 lambda 1-2 
-3-4 a 6 b 5 lambda 3-4 
-5 a 6 b 1-2 lambda 5 
-6F a 3-4 b 5 lambda 6 
+0i a 1 b 2 lambda 0 
+1 a 1 b 3 lambda 1 
+2 a 3 b 2 lambda 2 
+3F a 3 b 3 lambda 3 
