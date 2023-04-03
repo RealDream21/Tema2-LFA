@@ -3,6 +3,9 @@ alfabet = []
 stariFinale = []
 stareInitiala = None
 """
+!!!trebuie eliminate starile inaccesibile
+!!!trebuie sa ia si 3 stari de-o data ex q1q2q3
+
 https://drive.google.com/file/d/1QBEbr0P_OpTgUGbsxT3-PgKvSQtkeLvd/view
 pg 23
 automat = {'0':{'a', '1', 'b', '3'}, '1':{'a': '3', 'b': '2'}}
