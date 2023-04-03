@@ -3,8 +3,10 @@ alfabet = []
 stariFinale = []
 stareInitiala = None
 """
-!!!trebuie eliminate starile inaccesibile
+!!!trebuie eliminate starile inaccesibile (s ar putea sa fie dmictionarele goale) adica cv gen {'5':{}} este stare inaccesibila
 !!!trebuie sa ia si 3 stari de-o data ex q1q2q3
+!!!cand se contopesc cate 3 stari reiese din tranzitivitatea cu multimea vida in tabel
+
 
 https://drive.google.com/file/d/1QBEbr0P_OpTgUGbsxT3-PgKvSQtkeLvd/view
 pg 23
@@ -38,6 +40,7 @@ for line in f.readlines():
 f.close()
 
 separabile = {stare:dict() for stare in automat.keys()}
+
 
 lungime = 0
 cuvinteDeParcurs = alfabet.copy()
@@ -144,3 +147,5 @@ for newStare in newAutomat:
     for newTranzitie in newAutomat[newStare]:
         to_write += newTranzitie + " " + newAutomat[newStare][newTranzitie] + " "
     f.write(to_write + '\n')
+
+f.close()
