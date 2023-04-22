@@ -182,7 +182,6 @@ newStariFinale = [newNotations[x] for x in stariFinale]
 for node in newAutomat:
     newAutomat[node].pop('lambda')
 
-#eliminate the states from which i can never reach final states
 auxCuvinteDeParcurs = alfabet.copy()
 toPop = []
 noPop = []
