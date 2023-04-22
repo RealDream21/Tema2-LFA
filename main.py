@@ -3,9 +3,8 @@ alfabet = []
 stariFinale = []
 stareInitiala = None
 """
-!!!trebuie sa ia si 3 stari de-o data ex q1q2q3
-!!!cand se contopesc cate 3 stari reiese din tranzitivitatea cu multimea vida in tabel
-
+!!!!!!!trebuie eliminate starile din care nu se ajunge in stare finala(asta dupa ce termin tabelul si toate alea)
+!!!!!!!se poate opri algoritmul daca la pasul k - 1 nu s a facut nicio modificare
 
 https://drive.google.com/file/d/1QBEbr0P_OpTgUGbsxT3-PgKvSQtkeLvd/view
 pg 23
@@ -78,7 +77,7 @@ for i in range(maxN, minN - 1, -1):
     if i in automat.keys():
         separabile[str(i)].update(dict(toAdd)) #interpretarea este: i este separabil de j prin separabile[i][j], daca aleg dictionarul altfel sunt duplicate si nu pot avea lambda la mai multe
 
-for _ in range(len(automat)):
+for _ in range(len(automat) + 2):
     for i in range(maxN, minN - 1, -1):
         if str(i) not in automat.keys():
             continue
@@ -179,6 +178,40 @@ f = open("automat_minimal.txt", "w")
 
 newStareInitiala = newNotations[stareInitiala]
 newStariFinale = [newNotations[x] for x in stariFinale]
+
+for node in newAutomat:
+    newAutomat[node].pop('lambda')
+
+#eliminate the states from which i can never reach final states
+auxCuvinteDeParcurs = alfabet.copy()
+toPop = []
+noPop = []
+for _ in range(len(newAutomat) + 2):
+    for stare in newAutomat:
+        for cuvant in auxCuvinteDeParcurs:
+            nod = stare
+            for litera in cuvant:
+                nod = newAutomat[nod][litera]
+            if nod in newStariFinale:
+                noPop.append(stare)
+                break
+    auxCuvinteDeParcurs = [x + y for x in auxCuvinteDeParcurs for y in alfabet]
+
+for stare in newAutomat:
+    if stare not in noPop:
+        toPop.append(stare)
+    
+for stare in newAutomat:
+    tranzitieToPop = []
+    for tranzitie in newAutomat[stare]:
+        if newAutomat[stare][tranzitie] in toPop:
+            tranzitieToPop.append(tranzitie)
+    for tranzitie in tranzitieToPop:
+        newAutomat[stare].pop(tranzitie)
+
+for stare in toPop:
+    newAutomat.pop(stare)
+
 
 for newStare in newAutomat:
     to_write = newStare
